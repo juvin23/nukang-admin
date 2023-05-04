@@ -1,0 +1,52 @@
+<body>
+    <img src="assets/company2.png" class="fix"/>
+    <img class="wave" src="assets/wave.png">
+    <h2>UPDATE COMPANY</h2>
+    <br><br>
+    <form (ngSubmit) = "onUpdate()">
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "name"
+            [(ngModel)] = "company.name" name ="name" required="required">
+            <span>Name</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "email"
+            [(ngModel)] = "company.email" name ="email" required="required">
+            <span>Email</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "address"
+            [(ngModel)] = "company.address" name ="address" required="required">
+            <span>Address</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "city"
+            [(ngModel)] = "company.city" name ="city" required="required">
+            <span>City</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "province"
+            [(ngModel)] = "company.province" name ="province" required="required">
+            <span>Province</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "merchant_categories"
+            [(ngModel)] = "company.merchant_categories" name ="merchant_categories">
+            <span>Merchant Categories</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "phone"
+            [(ngModel)] = "company.phone" name ="phone">
+            <span>Phone</span>
+        </div>
+    <br>
+        <button class="btn btn-success" type="submit">Submit</button>
+    
+    </form>
+</body>

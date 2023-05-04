@@ -1,0 +1,31 @@
+<mat-nav-list #drawer mode="side">
+    <div class="profile-photo">
+        <div class="header">
+            <h2 style="color: royalblue;">Welcome To Admin Dashboard</h2>
+        </div>
+        <img src="assets/admin.logo.png" alt="">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h4 matSubheader>Admin</h4>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>dashboard</mat-icon>Dashboard</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/user"><mat-icon>supervised_user_circle</mat-icon>User List</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/company"><mat-icon>group_work</mat-icon>Company List</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/ads"><mat-icon>camera_enhance</mat-icon>Upload Promotion</a>
+
+    <mat-divider></mat-divider>
+    
+    <h4 matSubheader>Tools</h4>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/merchant">
+        <mat-icon>business_center</mat-icon>Edit Merchant Category
+    </a>
+
+    
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/city">
+        <mat-icon>location_city</mat-icon>Edit City
+    </a>
+
+</mat-nav-list>
+

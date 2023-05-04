@@ -1,0 +1,35 @@
+
+<body>
+    <img src="assets/user1.png" class="fix"/>
+    <img src="assets/user2.png" class="fix2"/>
+    <h2>Update User</h2>
+    <br>
+    <form (ngSubmit) = "onUpdate()">
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "name"
+            [(ngModel)] = "user.name" name ="name" required="required">
+            <span>Name</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "email"
+            [(ngModel)] = "user.email" name ="email" required="required">
+            <span>Email</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "address"
+            [(ngModel)] = "user.address" name ="address" required="required">
+            <span>Address</span>
+        </div>
+    <br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "phone"
+            [(ngModel)] = "user.phone" name ="phone" required="required">
+            <span>Phone</span>
+        </div>
+    <br>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+
+</body>

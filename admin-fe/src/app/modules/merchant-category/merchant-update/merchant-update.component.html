@@ -1,0 +1,28 @@
+
+
+
+    <br>
+    <body>
+        <img src="assets/category.png" class="fix"/>
+        <img src="assets/wave.png" class="wave"/>
+        <h2>Update Merchant</h2>
+        <br>
+        <form (ngSubmit) = "onUpdate()">
+
+            <div class="inputBox">
+                <label style="font-weight:bolder; color: rgb(50, 69, 209);">Merchant Id</label>
+                <input type="text" class="form-control" id = "id"
+                [(ngModel)] = "merchantCat.category_id" name ="id" required="required" disabled="disabled">
+            </div>
+            <br><br>
+            <div class="inputBox">
+                <input type="text" class="form-control" id = "city_name"
+                [(ngModel)] = "merchantCat.category_name" name ="city_name" required="required">
+                <Span>Merchant Name</Span>
+            </div>
+        <br><br>
+            <button class="btn btn-success" type="submit" style="align-items: center;">Submit</button>
+        
+        </form>
+    </body>
+

@@ -1,0 +1,67 @@
+<div>
+    <app-widget-area></app-widget-area>
+</div>
+
+<mat-divider></mat-divider>
+<div><h3>Last Transaction History</h3></div>
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+
+           <div class="mat-elevation-z8">
+            <mat-table
+              [dataSource]="transactionData"
+              matSort
+              matSortActive="last_update"
+              matSortDirection="desc"
+            >
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.txn_id}} </mat-cell>
+            </ng-container>
+
+              <ng-container matColumnDef="txn_id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction ID </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.txn_id}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="txn_start_date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Transaction Start Date
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.txn_start_date}} </mat-cell>
+              </ng-container>
+          
+          
+              <ng-container matColumnDef="last_update">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Last Update
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.last_update}} </mat-cell>
+              </ng-container>
+          
+              <ng-container matColumnDef="record_status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Record Status
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.record_status}} </mat-cell>
+              </ng-container>
+          
+              <ng-container matColumnDef="dennied_reason">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Dennied Status
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{element.dennied_reason}}
+                </mat-cell>
+              </ng-container>
+          
+              <mat-header-row *matHeaderRowDef="transactionCategoryColumn"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: transactionCategoryColumn;"> </mat-row>
+            </mat-table>
+          
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+          
+
+</div>	
+<mat-divider></mat-divider>
+    
