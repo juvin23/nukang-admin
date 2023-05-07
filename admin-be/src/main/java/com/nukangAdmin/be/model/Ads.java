@@ -1,16 +1,17 @@
 package com.nukangAdmin.be.model;
 
-import jakarta.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.JdbcType;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
-import org.hibernate.type.descriptor.jdbc.LongVarcharJdbcType;
-
-import java.sql.Types;
 
 @Entity
 @AllArgsConstructor
@@ -26,10 +27,10 @@ public class Ads {
     @Column(name = "name")
     private String name;
 
-    @Lob
-    @JdbcTypeCode(Types.LONGVARBINARY)
-    @Column(name = "imagedata",length = 1000)
-    private byte[] imageData;
+    // @Lob
+    // @JdbcTypeCode(Types.LONGVARBINARY)
+    // @Column(name = "imagedata",length = 1000)
+    // private byte[] imageData;
 
 
 }

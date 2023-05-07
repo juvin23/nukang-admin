@@ -1,17 +1,24 @@
 package com.nukangAdmin.be.controller;
 
-import com.nukangAdmin.be.model.City;
-import com.nukangAdmin.be.model.Merchant_Category;
-import com.nukangAdmin.be.model.User;
-import com.nukangAdmin.be.repository.CityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.ResourceAccessException;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.ResourceAccessException;
+
+import com.nukangAdmin.be.model.City;
+import com.nukangAdmin.be.repository.CityRepository;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -23,7 +30,14 @@ public class CityController {
     public List<City> getCityList(){return  cityRepository.findAll();}
 
     @PostMapping("/city")
-    public City addCity(@RequestBody City city){return cityRepository.save(city);}
+    public City addCity(@RequestBody City cityDetails){
+        Optional<City> city = cityRepository.findById(cityDetails.getCityCode());
+        if (city.isPresent()) {
+            throw new ResourceAccessException("Id already used");
+        } else {
+            return cityRepository.save(cityDetails);
+        }
+    }
 
     @DeleteMapping("/city/{id}")
     public ResponseEntity<Map<String,Boolean>> deleteCity(@PathVariable String id){
@@ -46,8 +60,8 @@ public class CityController {
     public ResponseEntity<City> updateUser(@PathVariable String id,@RequestBody City cityDetails){
         City city = cityRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Id not found"));
 
-        city.setCity_id(cityDetails.getCity_id());
-        city.setCity_name(cityDetails.getCity_name());
+        city.setCityCode(cityDetails.getCityCode());
+        city.setCityName(cityDetails.getCityName());
 
         City updateCity = cityRepository.save(city);
         return ResponseEntity.ok(updateCity);

@@ -1,7 +1,7 @@
 package com.nukangAdmin.be.controller;
 
-import com.nukangAdmin.be.model.Transactions;
-import com.nukangAdmin.be.repository.TransactionsRepository;
+import com.nukangAdmin.be.model.Transaction;
+import com.nukangAdmin.be.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +13,8 @@ import java.util.List;
 @RequestMapping("/api/v1/")
 public class TransactionController {
     @Autowired
-    private TransactionsRepository transactionsRepository;
+    private TransactionRepository transactionRepository;
 
     @GetMapping("/transaction")
-    public List<Transactions> getTransactionList(){return transactionsRepository.findAll();}
+    public List<Transaction> getTransactionList(){return transactionRepository.findAll();}
 }

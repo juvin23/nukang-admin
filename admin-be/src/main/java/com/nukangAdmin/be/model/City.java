@@ -1,23 +1,37 @@
 package com.nukangAdmin.be.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
-@AllArgsConstructor
-@Data
-@NoArgsConstructor
-@Table(name="city")
+@Table(name = "city")
 public class City {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    Long Id;
     @Id
-    @GeneratedValue(generator="city_id")
-    @GenericGenerator(name="city_id", strategy = "uuid")
-    private String city_id;
-
+    @Column(name = "city_id")
+    private String cityCode;
     @Column(name = "city_name")
-    private String city_name;
+    private String cityName;
+
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
 }
