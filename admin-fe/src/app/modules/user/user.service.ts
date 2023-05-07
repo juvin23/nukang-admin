@@ -8,7 +8,8 @@ import { User } from './user';
 })
 export class UserService {
 
-  private baseURL = "http://localhost:8080/api/v1/users";
+  // private baseURL = "http://localhost:8080/api/v1/users";
+  private baseURL = "http://localhost:8080/api/v1/customers";
   
   constructor(private httpClient: HttpClient) { }
 
@@ -22,6 +23,10 @@ export class UserService {
 
   updateUser(id: BigInt, user: User): Observable<Object>{
     return this.httpClient.post(`${this.baseURL}/${id}`, user);
+  }
+
+  updateUserStatus(id: BigInt, status: string): Observable<Object>{
+    return this.httpClient.post(`${this.baseURL}/update-status/${id}`, status);
   }
 
   deleteUser(id: BigInt): Observable<Object>{

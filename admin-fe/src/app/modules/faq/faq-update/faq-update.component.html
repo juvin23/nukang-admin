@@ -1,0 +1,28 @@
+<body>
+    <img src="assets/faq.png" class="fix"/>
+    <img src="assets/wave.png" class="wave"/>
+    <h2>Ubah Bantuan</h2>
+    <br>
+    <form (ngSubmit) = "onUpdate()">
+        <div class="inputBox">
+            <label style="font-weight:bolder; color: rgb(50, 69, 209);">ID</label>
+            <input type="text" class="form-control" id = "id"
+            [(ngModel)] = "faq.id" name ="id" required="required" disabled="disabled">
+        </div>
+    <br><br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "question"
+            [(ngModel)] = "faq.question" name ="question" required="required">
+            <span for="question">Pertanyaan</span>
+        </div>
+    <br><br>
+        <div class="inputBox">
+            <input type="text" class="form-control" id = "answer"
+            [(ngModel)] = "faq.answer" name ="answer" required="required">
+            <span for="answer">Jawaban</span>
+        </div>
+    <br>
+        <button class="btn btn-success" type="submit">Simpan</button>
+        <a routerLink="../../"><button class="btn btn-back">Kembali</button></a>
+    </form>
+</body>

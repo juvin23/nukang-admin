@@ -18,13 +18,13 @@ export class LoginPageComponent implements OnInit{
     console.log(this.admin);
     this.loginPageService.loginAdmin(this.admin).subscribe(data=>
       {
-        alert("login success !!!")
+        alert("Login Success")
         this.goToDashboard();
       },error=>alert("Sorry enter correct user / password"));
   }
 
   goToDashboard(){
-    this.router.navigate(['/'])
+    this.router.navigate(['/transaction'])
   }
 
   ngOnInit(): void {

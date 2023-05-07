@@ -14,30 +14,26 @@ export class AreaComponent{
     Highcharts: typeof Highcharts = Highcharts;
     
     chartOptions: Highcharts.Options = {
-      
-    title: {
-        text: 'Transaction On Nukang.Com this years',
-        align: 'center'
-    },
-
-    yAxis: {
       title: {
-          text: 'Number of User Transaction'
-      }
-    },
-
-    xAxis: {
-      categories:["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Ags","Sep","Okt","Nov","Des"]
-    },
-
-    
-
+          text: 'Transaction On Nukang.Com this years',
+          align: 'center'
+      },
+      yAxis: {
+        title: {
+            text: 'Number of User Transaction'
+        }
+      },
+      xAxis: {
+        categories:["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Ags","Sep","Okt","Nov","Des"]
+      },
       series: [{
         name: 'User Transaction',
         data: [1 , 21 , 11 , 5 , 7 , 10 , 12 , 9 , 10 , 11 , 33 , 20],
         type: 'line'
       }]
-
-
     };
+
+    ngOnInit(): void{ 
+      
+    }
 }

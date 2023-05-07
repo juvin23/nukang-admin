@@ -11,6 +11,7 @@ import { UserUpdateComponent } from './modules/user/user-update/user-update.comp
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -31,7 +32,9 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

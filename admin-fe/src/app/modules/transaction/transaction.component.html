@@ -1,0 +1,95 @@
+<h1>Histori Transaksi</h1>
+
+<mat-form-field appearance="outline">
+    <mat-label>Cari</mat-label>
+    <input matInput (keyup)="applyFilter($event)">
+  </mat-form-field>
+
+<div class="table-responsive">
+  <table mat-table [dataSource]="transactionData" matSort matSortActive="last_update" matSortDirection="desc">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Transaksi </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customer_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Pengguna </th>
+      <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="merchant_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Penyedia Jasa </th>
+      <td mat-cell *matCellDef="let element"> {{element.merchantId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="txn_start_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Tanggal Transaksi Mulai
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="txn_end_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Tanggal Transaksi Selesai
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.endDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Deskripsi
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="record_status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status Transaksi
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.recordStatus}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="denied_reason">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Alasan Ditolak
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.deniedReason}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Jumlah
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="created_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Tanggal Dibuat
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="last_update">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Terakhir Diubah
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastUpdated}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="update_by">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Diubah Oleh
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.updateBy}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="transactionColumn"></tr>
+    <tr mat-row *matRowDef="let row;columns:transactionColumn;"></tr>
+  </table>
+          
+</div>	
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<mat-divider></mat-divider>
+    

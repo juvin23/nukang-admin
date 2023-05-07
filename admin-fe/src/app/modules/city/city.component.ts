@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
-import { CityUpdateComponent } from './city-update/city-update.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-city',
@@ -23,7 +23,9 @@ export class CityComponent {
   @ViewChild(MatPaginator) paginator :any = MatPaginator;
 
   constructor(private cityService: CityService,
-    private router: Router,public dialog: MatDialog){
+    private router: Router,
+    private toastr: ToastrService,
+    public dialog: MatDialog){
   }
 
   ngOnInit(): void{ 
@@ -37,12 +39,17 @@ export class CityComponent {
   }
 
   deleteCity(id:String){
-    if(confirm("Are you sure to delete City Data ?")) {
+    if(confirm("Apakah Anda yakin ingin menghapus kota ini?")) {
       this.cityService.deleteCity(id).subscribe(data =>
         {
           this.getCitys();
+          this.toastr.success('Data kota berhasil dihapus', 'Hapus');
         })
     }
+  }
+
+  createCity(){
+    this.router.navigate(['city/city-create']);
   }
 
   updateCity(id:String){

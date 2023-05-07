@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from './user';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,13 +16,14 @@ import { Router } from '@angular/router';
 export class UserComponent {
   public userData = new MatTableDataSource<User>();
   user!: User[];
-  userColumns: string[] = ['id' , 'name' , 'email' , 'address','phone','action'];
+  userColumns: string[] = ['id','name','email','birthdate','address','province','city','phone','status','created_by','created_on','edited_by','edited_on','last_login','action'];	
 
   @ViewChild(MatSort, { static: true })sort!: MatSort;
   @ViewChild(MatPaginator) paginator :any = MatPaginator;
 
   constructor(private userService: UserService,
-              private router: Router){}
+              private router: Router,
+              private toastr: ToastrService){}
 
   ngOnInit(): void{ 
     this.getUsers();
@@ -37,16 +39,25 @@ export class UserComponent {
     this.router.navigate(['user/update-user',id]);
   }
 
-  deleteUser(id: BigInt){
-    if(confirm("Are you sure to delete this User Data ?")) {
-      this.userService.deleteUser(id).subscribe(data =>
+  // deleteUser(id: BigInt){
+  //   if(confirm("Apakah Anda yakin ingin menghapus data pengguna ini?")) {
+  //     this.userService.deleteUser(id).subscribe(data =>
+  //       {
+  //         this.getUsers();
+  //         this.toastr.success('Data pengguna berhasil dihapus', 'Hapus');
+  //       })
+  //   } 
+  // }
+
+  updateUserStatus(id: BigInt, status: string){
+    if(confirm("Apakah Anda yakin ingin mengubah status pengguna ini?")) {
+      this.userService.updateUserStatus(id, status).subscribe(data =>
         {
           this.getUsers();
+          this.toastr.success('Status pengguna berhasil diubah', 'Ubah');
         })
-    }
-    
+    } 
   }
-
   
   ngAfterViewInit(){
     this.userData.sort = this.sort;

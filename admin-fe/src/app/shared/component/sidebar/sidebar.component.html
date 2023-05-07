@@ -1,31 +1,41 @@
 <mat-nav-list #drawer mode="side">
     <div class="profile-photo">
         <div class="header">
-            <h2 style="color: royalblue;">Welcome To Admin Dashboard</h2>
+            <h2 style="color: royalblue;">Selamat Datang di Admin Nukang.com</h2>
         </div>
         <img src="assets/admin.logo.png" alt="">
     </div>
 
     <mat-divider></mat-divider>
 
-    <h4 matSubheader>Admin</h4>
+    <h4 matSubheader>Data</h4>
 
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>dashboard</mat-icon>Dashboard</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/user"><mat-icon>supervised_user_circle</mat-icon>User List</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/company"><mat-icon>group_work</mat-icon>Company List</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/ads"><mat-icon>camera_enhance</mat-icon>Upload Promotion</a>
-
+    <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/"><mat-icon>dashboard</mat-icon>Dashboard</a> -->
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/transaction"><mat-icon>dashboard</mat-icon>Transaksi</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/user"><mat-icon>supervised_user_circle</mat-icon>Pengguna</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/merchant"><mat-icon>group_work</mat-icon>Penyedia Jasa</a>
+    
     <mat-divider></mat-divider>
     
-    <h4 matSubheader>Tools</h4>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/merchant">
-        <mat-icon>business_center</mat-icon>Edit Merchant Category
-    </a>
+    <h4 matSubheader>Pengaturan</h4>
+    <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/merchant-category">
+        <mat-icon>business_center</mat-icon>Kategori Jasa
+    </a> -->
 
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/province">
+        <mat-icon>pin_drop</mat-icon>Provinsi
+    </a>
     
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/city">
-        <mat-icon>location_city</mat-icon>Edit City
+        <mat-icon>location_city</mat-icon>Kota
     </a>
-
+    
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/ads">
+        <mat-icon>camera_enhance</mat-icon>Promosi
+    </a>
+    
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/faq">
+        <mat-icon>question_answer</mat-icon>Bantuan
+    </a>
 </mat-nav-list>
 

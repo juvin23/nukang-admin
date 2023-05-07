@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { MerchantService } from './merchant.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-merchant-category',
@@ -21,7 +22,8 @@ export class MerchantCategoryComponent {
   @ViewChild(MatPaginator) paginator :any = MatPaginator;
 
   constructor(private merchantService: MerchantService,
-    private router: Router){
+    private router: Router,
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void{ 
@@ -44,10 +46,12 @@ export class MerchantCategoryComponent {
   }
 
   deleteCategory(id:String){
-    if(confirm("Are you sure to delete City Data ?")) {
+    console.log(id);
+    if(confirm("Apakah Anda yakin ingin menghapus kategori jasa ini?")) {
       this.merchantService.deleteMercCat(id).subscribe(data =>
         {
           this.getMerchCat();
+          this.toastr.success('Data kategori jasa berhasil dihapus', 'Hapus');
         })
     }
   }
@@ -58,11 +62,14 @@ export class MerchantCategoryComponent {
   }
 
   saveCategory(){
-    this.merchantService.createMercCat(this.merchantCat).subscribe(data =>
-      {
-        console.log(data);
-      },
-      error => console.log(error))
+    // if(confirm("Apakah Anda yakin ingin mengubah kategori jasa ini?")) {
+      this.merchantService.createMercCat(this.merchantCat).subscribe(data =>
+        {
+          console.log(data);
+          // this.toastr.success('Data kategori jasa berhasil diubah', 'Ubah');
+        },
+        error => console.log(error))
+      // }
   }
 
   goToCategoryList(){
