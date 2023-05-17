@@ -1,25 +1,19 @@
-package com.nukangAdmin.be.model;
+package com.nukang.app.advertisement;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @AllArgsConstructor
-@Data
 @NoArgsConstructor
 @Builder
-@Table(name="AdsRepository")
-public class Ads {
+@Setter
+@Getter
+@Table(name="advertisement")
+public class Advertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -27,10 +21,18 @@ public class Ads {
     @Column(name = "name")
     private String name;
 
-    // @Lob
-    // @JdbcTypeCode(Types.LONGVARBINARY)
-    // @Column(name = "imagedata",length = 1000)
-    // private byte[] imageData;
+    @Column(name = "start_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    LocalDate startDate;
 
+    @Column(name =  "end_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    LocalDate endDate;
 
+    @Column(name = "description")
+    String desc;
+
+    @Lob
+    @Column(name = "data")
+    private byte[] imageData;
 }
