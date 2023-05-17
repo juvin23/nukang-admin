@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { AdsService } from './ads.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Ads } from './ads';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { DatePipe, formatDate } from '@angular/common';
 
 declare function showPreview():any;
 
@@ -14,42 +14,46 @@ declare function showPreview():any;
   styleUrls: ['./ads.component.scss']
 })
 export class AdsComponent {
-  // selectedFiles?: FileList;
-  // currentFile?: File;
-  // preview = '';
-  // file!: File;
-  // ads = new Ads;
-  form!: FormGroup;
+  selectedFiles?: FileList;
+  currentFile?: File;
+  preview = '';
   file!: File;
+  ads = new Ads;
+  form!: FormGroup;
 
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private http: HttpClient, private adsService: AdsService) {}
+  formController = new FormGroup({
+    startDate: new FormControl<Date | null>(null),
+    endDate: new FormControl<Date | null>(null),
+    description: new FormControl<string|null>(null)
+  });
 
-//   selectFile(event: any): void {
-//     this.preview = '';
-//     this.selectedFiles = event.target.files;
-  
-//     if (this.selectedFiles) {
-//       const file: File | null = this.selectedFiles.item(0);
-  
-//       if (file) {
-//         this.preview = '';
-//         this.currentFile = file;
-  
-//         const reader = new FileReader();
-  
-//         reader.onload = (e: any) => {
-//           console.log(file.name);
-//           this.preview = e.target.result;
-//           this.ads.preview = file;
-//           this.ads.name = file.name;
-//         };
-  
-//         reader.readAsDataURL(this.currentFile);
-//       }
-//     }
-//   }
+  selectFile(event: any): void {
+    this.preview = '';
+    this.selectedFiles = event.target.files;
+
+    if (this.selectedFiles) {
+      this.file = this.selectedFiles.item(0) as File;
+
+      if (this.file) {
+        this.preview = '';
+        this.currentFile = this.file;
+
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          console.log(this.file.name);
+          this.preview = e.target.result;
+          this.ads.preview = this.file;
+          this.ads.name = this.file.name;
+        };
+
+        reader.readAsDataURL(this.currentFile);
+      }
+    }
+  }
 
 //   upload() {
 
@@ -57,7 +61,7 @@ export class AdsComponent {
 //       {
 //         console.log(data);
 //       },
-//       error => console.log(error))
+//       (      error: any) => console.log(error))
 //     console.log(this.ads.name);
 //     console.log(this.ads.preview);
 // }
@@ -82,15 +86,20 @@ fileChange(event: any) {
     this.file = event.target.files[0];
   }
 
-  
+
 }
 
 // Upload the file to the API
 upload() {
+
   // Instantiate a FormData to store form fields and encode the file
   let body = new FormData();
   // Add file content to prepare the request
+  ;
   body.append("image", this.file);
+  body.append("startDate",this.formController.value.startDate!.toISOString());
+  body.append("endDate",this.formController.value.endDate!.toISOString());
+  body.append("description",this.formController.value.description!.toString());
   // Launch post request
   this.http.post('http://localhost:8080/api/v1/ads', body)
   .subscribe(

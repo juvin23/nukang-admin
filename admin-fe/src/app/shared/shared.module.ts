@@ -15,6 +15,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { AreaComponent } from './widgets/area/area.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import HC_exporting from 'highcharts/modules/exporting';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -33,12 +35,16 @@ import HC_exporting from 'highcharts/modules/exporting';
     FlexLayoutModule,
     MatMenuModule,
     MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule,
     MatSidenavModule,
     HighchartsChartModule
   ],
   exports: [
     HeaderComponent,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FooterComponent,
     SidebarComponent,
     AreaComponent

@@ -1,4 +1,4 @@
-import { HttpClient, HttpRequest , HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpRequest , HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ads } from './ads';
@@ -9,13 +9,13 @@ import { Ads } from './ads';
 export class AdsService {
 
   private baseURL = "http://localhost:8080/api/v1/ads";
-  
+
   constructor(private httpClient: HttpClient) { }
 
   createAdsDetail(ads: Ads): Observable<Object>{
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.httpClient.post(`${this.baseURL}`,ads);
+    let header = new HttpHeaders();
+    header.append('Content-Type', 'multipart/form-data');
+    return this.httpClient.post(`${this.baseURL}`,ads,{headers: header});
   }
 
 }
