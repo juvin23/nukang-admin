@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-    @Table(name="AdminRepository")
+    @Table(name="admin")
     @AllArgsConstructor
     @Data
     @NoArgsConstructor

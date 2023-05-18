@@ -1,4 +1,4 @@
-package com.nukang.app.advertisement;
+package com.nukangAdmin.be.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Table(name="advertisement")
-public class Advertisement {
+public class Ads {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -31,8 +31,4 @@ public class Advertisement {
 
     @Column(name = "description")
     String desc;
-
-    @Lob
-    @Column(name = "data")
-    private byte[] imageData;
 }

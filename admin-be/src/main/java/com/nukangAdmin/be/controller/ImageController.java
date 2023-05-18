@@ -1,4 +1,4 @@
-package com.nukang.app.image;
+package com.nukangAdmin.be.controller;
 
 
 import lombok.RequiredArgsConstructor;

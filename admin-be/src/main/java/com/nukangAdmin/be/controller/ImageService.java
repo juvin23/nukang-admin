@@ -1,5 +1,7 @@
-package com.nukang.app.image;
+package com.nukangAdmin.be.controller;
 
+import com.nukangAdmin.be.model.ImageModel;
+import com.nukangAdmin.be.repository.ImageModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;

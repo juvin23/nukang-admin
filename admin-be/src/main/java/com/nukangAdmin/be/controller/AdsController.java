@@ -2,10 +2,13 @@ package com.nukangAdmin.be.controller;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 
+import com.nukangAdmin.be.model.Ads;
+import com.nukangAdmin.be.model.ImageModel;
+import com.nukangAdmin.be.repository.ImageModelRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,28 +23,31 @@ import com.nukangAdmin.be.repository.AdsRepository;
 
 @Service
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/")
 public class AdsController {
-    @Autowired
-    AdsRepository adsRepository;
 
-    @Autowired
-    ImaegUtilsService imaegUtilsService;
+    final AdsRepository adsRepository;
+
+    private final ImageModelRepository imageModelRepository;
+
+    final ImaegUtilsService imaegUtilsService;
 
     @PostMapping("/ads")
-    public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile file)throws IOException{
-        //  String uploadImage = imaegUtilsService.uploadImage(file);
-        //  return ResponseEntity.status(HttpStatus.OK).body(uploadImage);
-        return null;
+    public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile file,
+                                         @RequestParam("startDate")String startDate,
+                                         @RequestParam("endDate")String endDate,
+                                         @RequestParam("desc")String desc)throws IOException{
+        Ads newAds = Ads.builder().name(file.getOriginalFilename())
+                .desc(desc)
+                .startDate(LocalDate.parse(startDate.split("T")[0]))
+                .endDate(LocalDate.parse(endDate.split("T")[0]))
+                .build();
+        adsRepository.save(newAds);
+        ImageModel promoBanner = ImageModel.builder()
+                .name(file.getOriginalFilename())
+                .data(ImageUtils.compressImage(file.getBytes())).build();
+        imageModelRepository.save(promoBanner);
+        return ResponseEntity.ok(newAds);
     }
-
-    @GetMapping("/ads/{filename}")
-    public ResponseEntity<?> downloadImage(@PathVariable String filename){
-        // byte[] imageData = imaegUtilsService.downloadImage(filename);
-        // return ResponseEntity.status(HttpStatus.OK)
-        //         .contentType(MediaType.valueOf("image/png"))
-        //         .body(imageData);
-        return null;
-    }
-
 }
