@@ -45,7 +45,7 @@ public class AdsController {
                 .build();
         adsRepository.save(newAds);
         ImageModel promoBanner = ImageModel.builder()
-                .name(file.getOriginalFilename())
+                .name(newAds.getId()+"")
                 .data(ImageUtils.compressImage(file.getBytes())).build();
         imageModelRepository.save(promoBanner);
         return ResponseEntity.ok(newAds);
