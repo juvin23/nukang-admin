@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
     
     public class Admin {
         @Id
-        @Column(name = "userId")
+        @Column(name = "user_id")
         private String userId;
 
         @Column(name = "password")
