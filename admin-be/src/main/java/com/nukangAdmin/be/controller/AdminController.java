@@ -11,12 +11,12 @@ import org.springframework.web.client.ResourceAccessException;
 
 @RestController
 @RequestMapping("/api/v1/")
-@CrossOrigin(origins = "http://localhost:4200/")
 public class AdminController {
     @Autowired
     private AdminRepository repository;
 
     @PostMapping("/login")
+    @CrossOrigin(exposedHeaders="Access-Control-Allow-Origin")
     public ResponseEntity<Admin> updateUser(@RequestBody Admin adminDetails){
         Admin admin = repository.findById(adminDetails.getUserId())
                 .orElseThrow(() -> new ResourceAccessException("Id not found"));
