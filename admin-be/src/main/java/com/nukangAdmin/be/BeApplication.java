@@ -23,7 +23,6 @@ public class BeApplication {
 				registry.addMapping("/**").allowedOrigins("*");
 				registry.addMapping("/**").allowedMethods("*");
 				registry.addMapping("/**").allowedHeaders("*");
-				registry.addMapping("/**").allowCredentials(true);
 			}
 		};
 	}
